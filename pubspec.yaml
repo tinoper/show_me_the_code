@@ -19,8 +19,10 @@ dev_dependencies:
   flutter_lints: ^3.0.0
 
 flutter:
-
   uses-material-design: true
+
+  assets:
+    - assets/screenshots/
 
   # To add assets to your application, add an assets section, like this:
   # assets:
