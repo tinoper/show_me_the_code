@@ -1,4 +1,6 @@
 import 'package:code_my_screen/core/constants.dart';
+import 'package:code_my_screen/core/enums/generate_status.dart';
+import 'package:file_picker/file_picker.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
@@ -8,19 +10,36 @@ part 'home_page_cubit.freezed.dart';
 part 'home_page_state.dart';
 
 class HomePageCubit extends Cubit<HomePageState> {
-  HomePageCubit()
-      : super(
-          const HomePageState.loading(),
+  HomePageCubit(
+    this._filePicker,
+  ) : super(
+          const HomePageState(
+            generateStatus: GenerateStatus.selectScreenshot,
+          ),
         );
 
-  // Load ApiKey
-  // Select Image
+  final FilePicker _filePicker;
+
   Future<void> selectFilePressed() async {
-    // file Picker
-    // if file null return;
-    return;
-    // if file not null emit generating, next status
+    final result = await _filePicker.pickFiles(type: FileType.image);
+    if (result == null || result.files.isEmpty) {
+      return;
+    }
+    final file = result.files.first;
+    final mimeType =
+        file.extension?.toLowerCase() == 'png' ? 'image/png' : 'image/jpeg';
+    final imageBytes = file.bytes!;
+    emit(
+      HomePageState(
+        generateStatus: GenerateStatus.selectApiKey,
+        file: imageBytes,
+        mimeType: mimeType,
+      ),
+    );
   }
+
+  // Select ApiKey
+  Future<void> selectApiKey() async {}
 
   // Generate Code event
   Future<void> generateCode() async {
@@ -39,8 +58,6 @@ class HomePageCubit extends Cubit<HomePageState> {
     final response = await model.generateContent(content);
 
     print(response.text);
-
-    emit(HomePageState.generated(response.text));
   }
   // Generated Code Success
   // Generate Code Failure

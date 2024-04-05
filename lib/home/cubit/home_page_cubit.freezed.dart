@@ -16,61 +16,15 @@ final _privateConstructorUsedError = UnsupportedError(
 
 /// @nodoc
 mixin _$HomePageState {
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>({
-    required TResult Function() selectScreenshot,
-    required TResult Function(String apiKey, Uint8List imageBytes) generating,
-    required TResult Function(String? generatedCode) generated,
-    required TResult Function() loading,
-    required TResult Function(String errorMessage) error,
-  }) =>
-      throw _privateConstructorUsedError;
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? selectScreenshot,
-    TResult? Function(String apiKey, Uint8List imageBytes)? generating,
-    TResult? Function(String? generatedCode)? generated,
-    TResult? Function()? loading,
-    TResult? Function(String errorMessage)? error,
-  }) =>
-      throw _privateConstructorUsedError;
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? selectScreenshot,
-    TResult Function(String apiKey, Uint8List imageBytes)? generating,
-    TResult Function(String? generatedCode)? generated,
-    TResult Function()? loading,
-    TResult Function(String errorMessage)? error,
-    required TResult orElse(),
-  }) =>
-      throw _privateConstructorUsedError;
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(_SelectScreenshot value) selectScreenshot,
-    required TResult Function(_Generating value) generating,
-    required TResult Function(_Generated value) generated,
-    required TResult Function(_Loading value) loading,
-    required TResult Function(_Error value) error,
-  }) =>
-      throw _privateConstructorUsedError;
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_SelectScreenshot value)? selectScreenshot,
-    TResult? Function(_Generating value)? generating,
-    TResult? Function(_Generated value)? generated,
-    TResult? Function(_Loading value)? loading,
-    TResult? Function(_Error value)? error,
-  }) =>
-      throw _privateConstructorUsedError;
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(_SelectScreenshot value)? selectScreenshot,
-    TResult Function(_Generating value)? generating,
-    TResult Function(_Generated value)? generated,
-    TResult Function(_Loading value)? loading,
-    TResult Function(_Error value)? error,
-    required TResult orElse(),
-  }) =>
+  GenerateStatus get generateStatus => throw _privateConstructorUsedError;
+  Uint8List? get file => throw _privateConstructorUsedError;
+  String? get mimeType => throw _privateConstructorUsedError;
+  String? get geminiApiKey => throw _privateConstructorUsedError;
+  String? get generatedCode => throw _privateConstructorUsedError;
+  String? get error => throw _privateConstructorUsedError;
+
+  @JsonKey(ignore: true)
+  $HomePageStateCopyWith<HomePageState> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
@@ -79,6 +33,14 @@ abstract class $HomePageStateCopyWith<$Res> {
   factory $HomePageStateCopyWith(
           HomePageState value, $Res Function(HomePageState) then) =
       _$HomePageStateCopyWithImpl<$Res, HomePageState>;
+  @useResult
+  $Res call(
+      {GenerateStatus generateStatus,
+      Uint8List? file,
+      String? mimeType,
+      String? geminiApiKey,
+      String? generatedCode,
+      String? error});
 }
 
 /// @nodoc
@@ -90,317 +52,105 @@ class _$HomePageStateCopyWithImpl<$Res, $Val extends HomePageState>
   final $Val _value;
   // ignore: unused_field
   final $Res Function($Val) _then;
-}
-
-/// @nodoc
-abstract class _$$SelectScreenshotImplCopyWith<$Res> {
-  factory _$$SelectScreenshotImplCopyWith(_$SelectScreenshotImpl value,
-          $Res Function(_$SelectScreenshotImpl) then) =
-      __$$SelectScreenshotImplCopyWithImpl<$Res>;
-}
-
-/// @nodoc
-class __$$SelectScreenshotImplCopyWithImpl<$Res>
-    extends _$HomePageStateCopyWithImpl<$Res, _$SelectScreenshotImpl>
-    implements _$$SelectScreenshotImplCopyWith<$Res> {
-  __$$SelectScreenshotImplCopyWithImpl(_$SelectScreenshotImpl _value,
-      $Res Function(_$SelectScreenshotImpl) _then)
-      : super(_value, _then);
-}
-
-/// @nodoc
-
-class _$SelectScreenshotImpl implements _SelectScreenshot {
-  const _$SelectScreenshotImpl();
-
-  @override
-  String toString() {
-    return 'HomePageState.selectScreenshot()';
-  }
-
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$SelectScreenshotImpl);
-  }
-
-  @override
-  int get hashCode => runtimeType.hashCode;
-
-  @override
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>({
-    required TResult Function() selectScreenshot,
-    required TResult Function(String apiKey, Uint8List imageBytes) generating,
-    required TResult Function(String? generatedCode) generated,
-    required TResult Function() loading,
-    required TResult Function(String errorMessage) error,
-  }) {
-    return selectScreenshot();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? selectScreenshot,
-    TResult? Function(String apiKey, Uint8List imageBytes)? generating,
-    TResult? Function(String? generatedCode)? generated,
-    TResult? Function()? loading,
-    TResult? Function(String errorMessage)? error,
-  }) {
-    return selectScreenshot?.call();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? selectScreenshot,
-    TResult Function(String apiKey, Uint8List imageBytes)? generating,
-    TResult Function(String? generatedCode)? generated,
-    TResult Function()? loading,
-    TResult Function(String errorMessage)? error,
-    required TResult orElse(),
-  }) {
-    if (selectScreenshot != null) {
-      return selectScreenshot();
-    }
-    return orElse();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(_SelectScreenshot value) selectScreenshot,
-    required TResult Function(_Generating value) generating,
-    required TResult Function(_Generated value) generated,
-    required TResult Function(_Loading value) loading,
-    required TResult Function(_Error value) error,
-  }) {
-    return selectScreenshot(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_SelectScreenshot value)? selectScreenshot,
-    TResult? Function(_Generating value)? generating,
-    TResult? Function(_Generated value)? generated,
-    TResult? Function(_Loading value)? loading,
-    TResult? Function(_Error value)? error,
-  }) {
-    return selectScreenshot?.call(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(_SelectScreenshot value)? selectScreenshot,
-    TResult Function(_Generating value)? generating,
-    TResult Function(_Generated value)? generated,
-    TResult Function(_Loading value)? loading,
-    TResult Function(_Error value)? error,
-    required TResult orElse(),
-  }) {
-    if (selectScreenshot != null) {
-      return selectScreenshot(this);
-    }
-    return orElse();
-  }
-}
-
-abstract class _SelectScreenshot implements HomePageState {
-  const factory _SelectScreenshot() = _$SelectScreenshotImpl;
-}
-
-/// @nodoc
-abstract class _$$GeneratingImplCopyWith<$Res> {
-  factory _$$GeneratingImplCopyWith(
-          _$GeneratingImpl value, $Res Function(_$GeneratingImpl) then) =
-      __$$GeneratingImplCopyWithImpl<$Res>;
-  @useResult
-  $Res call({String apiKey, Uint8List imageBytes});
-}
-
-/// @nodoc
-class __$$GeneratingImplCopyWithImpl<$Res>
-    extends _$HomePageStateCopyWithImpl<$Res, _$GeneratingImpl>
-    implements _$$GeneratingImplCopyWith<$Res> {
-  __$$GeneratingImplCopyWithImpl(
-      _$GeneratingImpl _value, $Res Function(_$GeneratingImpl) _then)
-      : super(_value, _then);
 
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? apiKey = null,
-    Object? imageBytes = null,
-  }) {
-    return _then(_$GeneratingImpl(
-      null == apiKey
-          ? _value.apiKey
-          : apiKey // ignore: cast_nullable_to_non_nullable
-              as String,
-      null == imageBytes
-          ? _value.imageBytes
-          : imageBytes // ignore: cast_nullable_to_non_nullable
-              as Uint8List,
-    ));
-  }
-}
-
-/// @nodoc
-
-class _$GeneratingImpl implements _Generating {
-  const _$GeneratingImpl(this.apiKey, this.imageBytes);
-
-  @override
-  final String apiKey;
-  @override
-  final Uint8List imageBytes;
-
-  @override
-  String toString() {
-    return 'HomePageState.generating(apiKey: $apiKey, imageBytes: $imageBytes)';
-  }
-
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType &&
-            other is _$GeneratingImpl &&
-            (identical(other.apiKey, apiKey) || other.apiKey == apiKey) &&
-            const DeepCollectionEquality()
-                .equals(other.imageBytes, imageBytes));
-  }
-
-  @override
-  int get hashCode => Object.hash(
-      runtimeType, apiKey, const DeepCollectionEquality().hash(imageBytes));
-
-  @JsonKey(ignore: true)
-  @override
-  @pragma('vm:prefer-inline')
-  _$$GeneratingImplCopyWith<_$GeneratingImpl> get copyWith =>
-      __$$GeneratingImplCopyWithImpl<_$GeneratingImpl>(this, _$identity);
-
-  @override
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>({
-    required TResult Function() selectScreenshot,
-    required TResult Function(String apiKey, Uint8List imageBytes) generating,
-    required TResult Function(String? generatedCode) generated,
-    required TResult Function() loading,
-    required TResult Function(String errorMessage) error,
-  }) {
-    return generating(apiKey, imageBytes);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? selectScreenshot,
-    TResult? Function(String apiKey, Uint8List imageBytes)? generating,
-    TResult? Function(String? generatedCode)? generated,
-    TResult? Function()? loading,
-    TResult? Function(String errorMessage)? error,
-  }) {
-    return generating?.call(apiKey, imageBytes);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? selectScreenshot,
-    TResult Function(String apiKey, Uint8List imageBytes)? generating,
-    TResult Function(String? generatedCode)? generated,
-    TResult Function()? loading,
-    TResult Function(String errorMessage)? error,
-    required TResult orElse(),
-  }) {
-    if (generating != null) {
-      return generating(apiKey, imageBytes);
-    }
-    return orElse();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(_SelectScreenshot value) selectScreenshot,
-    required TResult Function(_Generating value) generating,
-    required TResult Function(_Generated value) generated,
-    required TResult Function(_Loading value) loading,
-    required TResult Function(_Error value) error,
-  }) {
-    return generating(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_SelectScreenshot value)? selectScreenshot,
-    TResult? Function(_Generating value)? generating,
-    TResult? Function(_Generated value)? generated,
-    TResult? Function(_Loading value)? loading,
-    TResult? Function(_Error value)? error,
-  }) {
-    return generating?.call(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(_SelectScreenshot value)? selectScreenshot,
-    TResult Function(_Generating value)? generating,
-    TResult Function(_Generated value)? generated,
-    TResult Function(_Loading value)? loading,
-    TResult Function(_Error value)? error,
-    required TResult orElse(),
-  }) {
-    if (generating != null) {
-      return generating(this);
-    }
-    return orElse();
-  }
-}
-
-abstract class _Generating implements HomePageState {
-  const factory _Generating(final String apiKey, final Uint8List imageBytes) =
-      _$GeneratingImpl;
-
-  String get apiKey;
-  Uint8List get imageBytes;
-  @JsonKey(ignore: true)
-  _$$GeneratingImplCopyWith<_$GeneratingImpl> get copyWith =>
-      throw _privateConstructorUsedError;
-}
-
-/// @nodoc
-abstract class _$$GeneratedImplCopyWith<$Res> {
-  factory _$$GeneratedImplCopyWith(
-          _$GeneratedImpl value, $Res Function(_$GeneratedImpl) then) =
-      __$$GeneratedImplCopyWithImpl<$Res>;
-  @useResult
-  $Res call({String? generatedCode});
-}
-
-/// @nodoc
-class __$$GeneratedImplCopyWithImpl<$Res>
-    extends _$HomePageStateCopyWithImpl<$Res, _$GeneratedImpl>
-    implements _$$GeneratedImplCopyWith<$Res> {
-  __$$GeneratedImplCopyWithImpl(
-      _$GeneratedImpl _value, $Res Function(_$GeneratedImpl) _then)
-      : super(_value, _then);
-
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({
+    Object? generateStatus = null,
+    Object? file = freezed,
+    Object? mimeType = freezed,
+    Object? geminiApiKey = freezed,
     Object? generatedCode = freezed,
+    Object? error = freezed,
   }) {
-    return _then(_$GeneratedImpl(
-      freezed == generatedCode
+    return _then(_value.copyWith(
+      generateStatus: null == generateStatus
+          ? _value.generateStatus
+          : generateStatus // ignore: cast_nullable_to_non_nullable
+              as GenerateStatus,
+      file: freezed == file
+          ? _value.file
+          : file // ignore: cast_nullable_to_non_nullable
+              as Uint8List?,
+      mimeType: freezed == mimeType
+          ? _value.mimeType
+          : mimeType // ignore: cast_nullable_to_non_nullable
+              as String?,
+      geminiApiKey: freezed == geminiApiKey
+          ? _value.geminiApiKey
+          : geminiApiKey // ignore: cast_nullable_to_non_nullable
+              as String?,
+      generatedCode: freezed == generatedCode
           ? _value.generatedCode
           : generatedCode // ignore: cast_nullable_to_non_nullable
+              as String?,
+      error: freezed == error
+          ? _value.error
+          : error // ignore: cast_nullable_to_non_nullable
+              as String?,
+    ) as $Val);
+  }
+}
+
+/// @nodoc
+abstract class _$$HomePageStateImplCopyWith<$Res>
+    implements $HomePageStateCopyWith<$Res> {
+  factory _$$HomePageStateImplCopyWith(
+          _$HomePageStateImpl value, $Res Function(_$HomePageStateImpl) then) =
+      __$$HomePageStateImplCopyWithImpl<$Res>;
+  @override
+  @useResult
+  $Res call(
+      {GenerateStatus generateStatus,
+      Uint8List? file,
+      String? mimeType,
+      String? geminiApiKey,
+      String? generatedCode,
+      String? error});
+}
+
+/// @nodoc
+class __$$HomePageStateImplCopyWithImpl<$Res>
+    extends _$HomePageStateCopyWithImpl<$Res, _$HomePageStateImpl>
+    implements _$$HomePageStateImplCopyWith<$Res> {
+  __$$HomePageStateImplCopyWithImpl(
+      _$HomePageStateImpl _value, $Res Function(_$HomePageStateImpl) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? generateStatus = null,
+    Object? file = freezed,
+    Object? mimeType = freezed,
+    Object? geminiApiKey = freezed,
+    Object? generatedCode = freezed,
+    Object? error = freezed,
+  }) {
+    return _then(_$HomePageStateImpl(
+      generateStatus: null == generateStatus
+          ? _value.generateStatus
+          : generateStatus // ignore: cast_nullable_to_non_nullable
+              as GenerateStatus,
+      file: freezed == file
+          ? _value.file
+          : file // ignore: cast_nullable_to_non_nullable
+              as Uint8List?,
+      mimeType: freezed == mimeType
+          ? _value.mimeType
+          : mimeType // ignore: cast_nullable_to_non_nullable
+              as String?,
+      geminiApiKey: freezed == geminiApiKey
+          ? _value.geminiApiKey
+          : geminiApiKey // ignore: cast_nullable_to_non_nullable
+              as String?,
+      generatedCode: freezed == generatedCode
+          ? _value.generatedCode
+          : generatedCode // ignore: cast_nullable_to_non_nullable
+              as String?,
+      error: freezed == error
+          ? _value.error
+          : error // ignore: cast_nullable_to_non_nullable
               as String?,
     ));
   }
@@ -408,393 +158,91 @@ class __$$GeneratedImplCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$GeneratedImpl implements _Generated {
-  const _$GeneratedImpl(this.generatedCode);
+class _$HomePageStateImpl implements _HomePageState {
+  const _$HomePageStateImpl(
+      {this.generateStatus = GenerateStatus.loading,
+      this.file,
+      this.mimeType,
+      this.geminiApiKey,
+      this.generatedCode,
+      this.error});
 
+  @override
+  @JsonKey()
+  final GenerateStatus generateStatus;
+  @override
+  final Uint8List? file;
+  @override
+  final String? mimeType;
+  @override
+  final String? geminiApiKey;
   @override
   final String? generatedCode;
+  @override
+  final String? error;
 
   @override
   String toString() {
-    return 'HomePageState.generated(generatedCode: $generatedCode)';
+    return 'HomePageState(generateStatus: $generateStatus, file: $file, mimeType: $mimeType, geminiApiKey: $geminiApiKey, generatedCode: $generatedCode, error: $error)';
   }
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$GeneratedImpl &&
+            other is _$HomePageStateImpl &&
+            (identical(other.generateStatus, generateStatus) ||
+                other.generateStatus == generateStatus) &&
+            const DeepCollectionEquality().equals(other.file, file) &&
+            (identical(other.mimeType, mimeType) ||
+                other.mimeType == mimeType) &&
+            (identical(other.geminiApiKey, geminiApiKey) ||
+                other.geminiApiKey == geminiApiKey) &&
             (identical(other.generatedCode, generatedCode) ||
-                other.generatedCode == generatedCode));
+                other.generatedCode == generatedCode) &&
+            (identical(other.error, error) || other.error == error));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, generatedCode);
+  int get hashCode => Object.hash(
+      runtimeType,
+      generateStatus,
+      const DeepCollectionEquality().hash(file),
+      mimeType,
+      geminiApiKey,
+      generatedCode,
+      error);
 
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$GeneratedImplCopyWith<_$GeneratedImpl> get copyWith =>
-      __$$GeneratedImplCopyWithImpl<_$GeneratedImpl>(this, _$identity);
-
-  @override
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>({
-    required TResult Function() selectScreenshot,
-    required TResult Function(String apiKey, Uint8List imageBytes) generating,
-    required TResult Function(String? generatedCode) generated,
-    required TResult Function() loading,
-    required TResult Function(String errorMessage) error,
-  }) {
-    return generated(generatedCode);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? selectScreenshot,
-    TResult? Function(String apiKey, Uint8List imageBytes)? generating,
-    TResult? Function(String? generatedCode)? generated,
-    TResult? Function()? loading,
-    TResult? Function(String errorMessage)? error,
-  }) {
-    return generated?.call(generatedCode);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? selectScreenshot,
-    TResult Function(String apiKey, Uint8List imageBytes)? generating,
-    TResult Function(String? generatedCode)? generated,
-    TResult Function()? loading,
-    TResult Function(String errorMessage)? error,
-    required TResult orElse(),
-  }) {
-    if (generated != null) {
-      return generated(generatedCode);
-    }
-    return orElse();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(_SelectScreenshot value) selectScreenshot,
-    required TResult Function(_Generating value) generating,
-    required TResult Function(_Generated value) generated,
-    required TResult Function(_Loading value) loading,
-    required TResult Function(_Error value) error,
-  }) {
-    return generated(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_SelectScreenshot value)? selectScreenshot,
-    TResult? Function(_Generating value)? generating,
-    TResult? Function(_Generated value)? generated,
-    TResult? Function(_Loading value)? loading,
-    TResult? Function(_Error value)? error,
-  }) {
-    return generated?.call(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(_SelectScreenshot value)? selectScreenshot,
-    TResult Function(_Generating value)? generating,
-    TResult Function(_Generated value)? generated,
-    TResult Function(_Loading value)? loading,
-    TResult Function(_Error value)? error,
-    required TResult orElse(),
-  }) {
-    if (generated != null) {
-      return generated(this);
-    }
-    return orElse();
-  }
+  _$$HomePageStateImplCopyWith<_$HomePageStateImpl> get copyWith =>
+      __$$HomePageStateImplCopyWithImpl<_$HomePageStateImpl>(this, _$identity);
 }
 
-abstract class _Generated implements HomePageState {
-  const factory _Generated(final String? generatedCode) = _$GeneratedImpl;
+abstract class _HomePageState implements HomePageState {
+  const factory _HomePageState(
+      {final GenerateStatus generateStatus,
+      final Uint8List? file,
+      final String? mimeType,
+      final String? geminiApiKey,
+      final String? generatedCode,
+      final String? error}) = _$HomePageStateImpl;
 
+  @override
+  GenerateStatus get generateStatus;
+  @override
+  Uint8List? get file;
+  @override
+  String? get mimeType;
+  @override
+  String? get geminiApiKey;
+  @override
   String? get generatedCode;
+  @override
+  String? get error;
+  @override
   @JsonKey(ignore: true)
-  _$$GeneratedImplCopyWith<_$GeneratedImpl> get copyWith =>
-      throw _privateConstructorUsedError;
-}
-
-/// @nodoc
-abstract class _$$LoadingImplCopyWith<$Res> {
-  factory _$$LoadingImplCopyWith(
-          _$LoadingImpl value, $Res Function(_$LoadingImpl) then) =
-      __$$LoadingImplCopyWithImpl<$Res>;
-}
-
-/// @nodoc
-class __$$LoadingImplCopyWithImpl<$Res>
-    extends _$HomePageStateCopyWithImpl<$Res, _$LoadingImpl>
-    implements _$$LoadingImplCopyWith<$Res> {
-  __$$LoadingImplCopyWithImpl(
-      _$LoadingImpl _value, $Res Function(_$LoadingImpl) _then)
-      : super(_value, _then);
-}
-
-/// @nodoc
-
-class _$LoadingImpl implements _Loading {
-  const _$LoadingImpl();
-
-  @override
-  String toString() {
-    return 'HomePageState.loading()';
-  }
-
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$LoadingImpl);
-  }
-
-  @override
-  int get hashCode => runtimeType.hashCode;
-
-  @override
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>({
-    required TResult Function() selectScreenshot,
-    required TResult Function(String apiKey, Uint8List imageBytes) generating,
-    required TResult Function(String? generatedCode) generated,
-    required TResult Function() loading,
-    required TResult Function(String errorMessage) error,
-  }) {
-    return loading();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? selectScreenshot,
-    TResult? Function(String apiKey, Uint8List imageBytes)? generating,
-    TResult? Function(String? generatedCode)? generated,
-    TResult? Function()? loading,
-    TResult? Function(String errorMessage)? error,
-  }) {
-    return loading?.call();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? selectScreenshot,
-    TResult Function(String apiKey, Uint8List imageBytes)? generating,
-    TResult Function(String? generatedCode)? generated,
-    TResult Function()? loading,
-    TResult Function(String errorMessage)? error,
-    required TResult orElse(),
-  }) {
-    if (loading != null) {
-      return loading();
-    }
-    return orElse();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(_SelectScreenshot value) selectScreenshot,
-    required TResult Function(_Generating value) generating,
-    required TResult Function(_Generated value) generated,
-    required TResult Function(_Loading value) loading,
-    required TResult Function(_Error value) error,
-  }) {
-    return loading(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_SelectScreenshot value)? selectScreenshot,
-    TResult? Function(_Generating value)? generating,
-    TResult? Function(_Generated value)? generated,
-    TResult? Function(_Loading value)? loading,
-    TResult? Function(_Error value)? error,
-  }) {
-    return loading?.call(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(_SelectScreenshot value)? selectScreenshot,
-    TResult Function(_Generating value)? generating,
-    TResult Function(_Generated value)? generated,
-    TResult Function(_Loading value)? loading,
-    TResult Function(_Error value)? error,
-    required TResult orElse(),
-  }) {
-    if (loading != null) {
-      return loading(this);
-    }
-    return orElse();
-  }
-}
-
-abstract class _Loading implements HomePageState {
-  const factory _Loading() = _$LoadingImpl;
-}
-
-/// @nodoc
-abstract class _$$ErrorImplCopyWith<$Res> {
-  factory _$$ErrorImplCopyWith(
-          _$ErrorImpl value, $Res Function(_$ErrorImpl) then) =
-      __$$ErrorImplCopyWithImpl<$Res>;
-  @useResult
-  $Res call({String errorMessage});
-}
-
-/// @nodoc
-class __$$ErrorImplCopyWithImpl<$Res>
-    extends _$HomePageStateCopyWithImpl<$Res, _$ErrorImpl>
-    implements _$$ErrorImplCopyWith<$Res> {
-  __$$ErrorImplCopyWithImpl(
-      _$ErrorImpl _value, $Res Function(_$ErrorImpl) _then)
-      : super(_value, _then);
-
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({
-    Object? errorMessage = null,
-  }) {
-    return _then(_$ErrorImpl(
-      null == errorMessage
-          ? _value.errorMessage
-          : errorMessage // ignore: cast_nullable_to_non_nullable
-              as String,
-    ));
-  }
-}
-
-/// @nodoc
-
-class _$ErrorImpl implements _Error {
-  const _$ErrorImpl(this.errorMessage);
-
-  @override
-  final String errorMessage;
-
-  @override
-  String toString() {
-    return 'HomePageState.error(errorMessage: $errorMessage)';
-  }
-
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType &&
-            other is _$ErrorImpl &&
-            (identical(other.errorMessage, errorMessage) ||
-                other.errorMessage == errorMessage));
-  }
-
-  @override
-  int get hashCode => Object.hash(runtimeType, errorMessage);
-
-  @JsonKey(ignore: true)
-  @override
-  @pragma('vm:prefer-inline')
-  _$$ErrorImplCopyWith<_$ErrorImpl> get copyWith =>
-      __$$ErrorImplCopyWithImpl<_$ErrorImpl>(this, _$identity);
-
-  @override
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>({
-    required TResult Function() selectScreenshot,
-    required TResult Function(String apiKey, Uint8List imageBytes) generating,
-    required TResult Function(String? generatedCode) generated,
-    required TResult Function() loading,
-    required TResult Function(String errorMessage) error,
-  }) {
-    return error(errorMessage);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? selectScreenshot,
-    TResult? Function(String apiKey, Uint8List imageBytes)? generating,
-    TResult? Function(String? generatedCode)? generated,
-    TResult? Function()? loading,
-    TResult? Function(String errorMessage)? error,
-  }) {
-    return error?.call(errorMessage);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? selectScreenshot,
-    TResult Function(String apiKey, Uint8List imageBytes)? generating,
-    TResult Function(String? generatedCode)? generated,
-    TResult Function()? loading,
-    TResult Function(String errorMessage)? error,
-    required TResult orElse(),
-  }) {
-    if (error != null) {
-      return error(errorMessage);
-    }
-    return orElse();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(_SelectScreenshot value) selectScreenshot,
-    required TResult Function(_Generating value) generating,
-    required TResult Function(_Generated value) generated,
-    required TResult Function(_Loading value) loading,
-    required TResult Function(_Error value) error,
-  }) {
-    return error(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_SelectScreenshot value)? selectScreenshot,
-    TResult? Function(_Generating value)? generating,
-    TResult? Function(_Generated value)? generated,
-    TResult? Function(_Loading value)? loading,
-    TResult? Function(_Error value)? error,
-  }) {
-    return error?.call(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(_SelectScreenshot value)? selectScreenshot,
-    TResult Function(_Generating value)? generating,
-    TResult Function(_Generated value)? generated,
-    TResult Function(_Loading value)? loading,
-    TResult Function(_Error value)? error,
-    required TResult orElse(),
-  }) {
-    if (error != null) {
-      return error(this);
-    }
-    return orElse();
-  }
-}
-
-abstract class _Error implements HomePageState {
-  const factory _Error(final String errorMessage) = _$ErrorImpl;
-
-  String get errorMessage;
-  @JsonKey(ignore: true)
-  _$$ErrorImplCopyWith<_$ErrorImpl> get copyWith =>
+  _$$HomePageStateImplCopyWith<_$HomePageStateImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

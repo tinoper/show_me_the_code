@@ -1,6 +1,10 @@
 import 'package:code_my_screen/core/constants.dart';
+import 'package:code_my_screen/core/enums/generate_status.dart';
 import 'package:code_my_screen/home/cubit/home_page_cubit.dart';
+import 'package:code_my_screen/home/view/widgets/select_apikey.dart';
+import 'package:code_my_screen/home/view/widgets/select_screenshot.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 class HomePageView extends StatelessWidget {
@@ -14,25 +18,29 @@ class HomePageView extends StatelessWidget {
         backgroundColor: Theme.of(context).colorScheme.inversePrimary,
         title: const Text(Constants.title),
       ),
-      body: const Placeholder(),
+      body: BlocBuilder<HomePageCubit, HomePageState>(
+        builder: (context, state) {
+          switch (state.generateStatus) {
+            case GenerateStatus.loading:
+              return const Center(child: CircularProgressIndicator());
+            case GenerateStatus.selectScreenshot:
+              return const SelectScreenshotWidget();
+            case GenerateStatus.selectApiKey:
+              return const SelectApiKeyWidget();
+            case GenerateStatus.generating:
+              return const Placeholder();
+            case GenerateStatus.generated:
+              return const Placeholder();
+            case GenerateStatus.error:
+              return const Placeholder();
+            default:
+              return const Placeholder();
+          }
+        },
+      ),
       floatingActionButton: FloatingActionButton(
         onPressed: () async {
           cubit.generateCode();
-          // String apiKey = const String.fromEnvironment('API_KEY');
-
-          // final model =
-          //     GenerativeModel(model: Constants.geminiModel, apiKey: apiKey);
-          // final imageData = await rootBundle.load(Constants.defaultDataImage);
-          // final imageBytes = imageData.buffer.asUint8List();
-          // final content = [
-          //   Content.multi([
-          //     TextPart(Constants.systemPrompt),
-          //     DataPart('image/png', imageBytes),
-          //   ])
-          // ];
-
-          // final response = await model.generateContent(content);
-          // print(response.text);
         },
         child: const Icon(Icons.refresh),
       ),
