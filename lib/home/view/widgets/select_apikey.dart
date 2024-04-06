@@ -10,21 +10,6 @@ class SelectApiKeyWidget extends StatefulWidget {
 }
 
 class _SelectApiKeyWidgetState extends State<SelectApiKeyWidget> {
-  late TextEditingController _geminiKeyController;
-
-  @override
-  void initState() {
-    super.initState();
-    _geminiKeyController = TextEditingController();
-  }
-
-  @override
-  void didChangeDependencies() {
-    super.didChangeDependencies();
-    final cubit = context.read<HomePageCubit>();
-    _geminiKeyController.text = cubit.state.geminiApiKey ?? '';
-  }
-
   @override
   Widget build(BuildContext context) {
     final cubit = context.read<HomePageCubit>();
@@ -32,7 +17,30 @@ class _SelectApiKeyWidgetState extends State<SelectApiKeyWidget> {
       child: Column(
         mainAxisSize: MainAxisSize.min,
         children: [
-          Text('Ingresar APIKEY'),
+          ConstrainedBox(
+            constraints: const BoxConstraints(
+              maxWidth: 250,
+            ),
+            child: TextFormField(
+              decoration: const InputDecoration(
+                labelText: 'Type your Gemini API Key',
+              ),
+              onChanged: cubit.setApiKey,
+            ),
+          ),
+          const SizedBox(
+            height: 50,
+          ),
+          BlocBuilder<HomePageCubit, HomePageState>(
+            builder: (context, state) {
+              return FilledButton.icon(
+                onPressed:
+                    state.geminiApiKey != null ? cubit.generateCode : null,
+                icon: const Icon(Icons.generating_tokens),
+                label: const Text('Generate Code'),
+              );
+            },
+          ),
         ],
       ),
     );

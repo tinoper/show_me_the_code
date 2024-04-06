@@ -30,7 +30,7 @@ class HomePageCubit extends Cubit<HomePageState> {
         file.extension?.toLowerCase() == 'png' ? 'image/png' : 'image/jpeg';
     final imageBytes = file.bytes!;
     emit(
-      HomePageState(
+      state.copyWith(
         generateStatus: GenerateStatus.selectApiKey,
         file: imageBytes,
         mimeType: mimeType,
@@ -38,26 +38,41 @@ class HomePageCubit extends Cubit<HomePageState> {
     );
   }
 
-  // Select ApiKey
-  Future<void> selectApiKey() async {}
+  Future<void> setApiKey(String updatedApiKey) async {
+    emit(
+      state.copyWith(
+        geminiApiKey: updatedApiKey,
+      ),
+    );
+  }
 
-  // Generate Code event
   Future<void> generateCode() async {
-    String apiKey = const String.fromEnvironment('API_KEY');
+    final model = GenerativeModel(
+      model: Constants.geminiModel,
+      apiKey: state.geminiApiKey!,
+    );
 
-    final model = GenerativeModel(model: Constants.geminiModel, apiKey: apiKey);
-    final imageData = await rootBundle.load(Constants.defaultDataImage);
-    final imageBytes = imageData.buffer.asUint8List();
     final content = [
       Content.multi([
         TextPart(Constants.systemPrompt),
-        DataPart('image/png', imageBytes),
+        DataPart(state.mimeType!, state.file!),
       ])
     ];
 
-    final response = await model.generateContent(content);
-
-    print(response.text);
+    try {
+      final response = await model.generateContent(content);
+      emit(
+        state.copyWith(
+          generateStatus: GenerateStatus.generated,
+          generatedCode: response.text,
+        ),
+      );
+    } catch (e) {
+      emit(state.copyWith(
+        generateStatus: GenerateStatus.error,
+        errorMessage: "Error Trying to generate code ${e.toString()}",
+      ));
+    }
   }
   // Generated Code Success
   // Generate Code Failure

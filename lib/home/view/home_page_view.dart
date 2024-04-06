@@ -4,7 +4,6 @@ import 'package:code_my_screen/home/cubit/home_page_cubit.dart';
 import 'package:code_my_screen/home/view/widgets/select_apikey.dart';
 import 'package:code_my_screen/home/view/widgets/select_screenshot.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 class HomePageView extends StatelessWidget {
@@ -28,9 +27,13 @@ class HomePageView extends StatelessWidget {
             case GenerateStatus.selectApiKey:
               return const SelectApiKeyWidget();
             case GenerateStatus.generating:
-              return const Placeholder();
+              return const Center(
+                child: Text('Generating'),
+              );
             case GenerateStatus.generated:
-              return const Placeholder();
+              return const Center(
+                child: Text('Generated'),
+              );
             case GenerateStatus.error:
               return const Placeholder();
             default:

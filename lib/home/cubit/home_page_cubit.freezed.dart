@@ -21,7 +21,7 @@ mixin _$HomePageState {
   String? get mimeType => throw _privateConstructorUsedError;
   String? get geminiApiKey => throw _privateConstructorUsedError;
   String? get generatedCode => throw _privateConstructorUsedError;
-  String? get error => throw _privateConstructorUsedError;
+  String? get errorMessage => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $HomePageStateCopyWith<HomePageState> get copyWith =>
@@ -40,7 +40,7 @@ abstract class $HomePageStateCopyWith<$Res> {
       String? mimeType,
       String? geminiApiKey,
       String? generatedCode,
-      String? error});
+      String? errorMessage});
 }
 
 /// @nodoc
@@ -61,7 +61,7 @@ class _$HomePageStateCopyWithImpl<$Res, $Val extends HomePageState>
     Object? mimeType = freezed,
     Object? geminiApiKey = freezed,
     Object? generatedCode = freezed,
-    Object? error = freezed,
+    Object? errorMessage = freezed,
   }) {
     return _then(_value.copyWith(
       generateStatus: null == generateStatus
@@ -84,9 +84,9 @@ class _$HomePageStateCopyWithImpl<$Res, $Val extends HomePageState>
           ? _value.generatedCode
           : generatedCode // ignore: cast_nullable_to_non_nullable
               as String?,
-      error: freezed == error
-          ? _value.error
-          : error // ignore: cast_nullable_to_non_nullable
+      errorMessage: freezed == errorMessage
+          ? _value.errorMessage
+          : errorMessage // ignore: cast_nullable_to_non_nullable
               as String?,
     ) as $Val);
   }
@@ -106,7 +106,7 @@ abstract class _$$HomePageStateImplCopyWith<$Res>
       String? mimeType,
       String? geminiApiKey,
       String? generatedCode,
-      String? error});
+      String? errorMessage});
 }
 
 /// @nodoc
@@ -125,7 +125,7 @@ class __$$HomePageStateImplCopyWithImpl<$Res>
     Object? mimeType = freezed,
     Object? geminiApiKey = freezed,
     Object? generatedCode = freezed,
-    Object? error = freezed,
+    Object? errorMessage = freezed,
   }) {
     return _then(_$HomePageStateImpl(
       generateStatus: null == generateStatus
@@ -148,9 +148,9 @@ class __$$HomePageStateImplCopyWithImpl<$Res>
           ? _value.generatedCode
           : generatedCode // ignore: cast_nullable_to_non_nullable
               as String?,
-      error: freezed == error
-          ? _value.error
-          : error // ignore: cast_nullable_to_non_nullable
+      errorMessage: freezed == errorMessage
+          ? _value.errorMessage
+          : errorMessage // ignore: cast_nullable_to_non_nullable
               as String?,
     ));
   }
@@ -165,7 +165,7 @@ class _$HomePageStateImpl implements _HomePageState {
       this.mimeType,
       this.geminiApiKey,
       this.generatedCode,
-      this.error});
+      this.errorMessage});
 
   @override
   @JsonKey()
@@ -179,11 +179,11 @@ class _$HomePageStateImpl implements _HomePageState {
   @override
   final String? generatedCode;
   @override
-  final String? error;
+  final String? errorMessage;
 
   @override
   String toString() {
-    return 'HomePageState(generateStatus: $generateStatus, file: $file, mimeType: $mimeType, geminiApiKey: $geminiApiKey, generatedCode: $generatedCode, error: $error)';
+    return 'HomePageState(generateStatus: $generateStatus, file: $file, mimeType: $mimeType, geminiApiKey: $geminiApiKey, generatedCode: $generatedCode, errorMessage: $errorMessage)';
   }
 
   @override
@@ -200,7 +200,8 @@ class _$HomePageStateImpl implements _HomePageState {
                 other.geminiApiKey == geminiApiKey) &&
             (identical(other.generatedCode, generatedCode) ||
                 other.generatedCode == generatedCode) &&
-            (identical(other.error, error) || other.error == error));
+            (identical(other.errorMessage, errorMessage) ||
+                other.errorMessage == errorMessage));
   }
 
   @override
@@ -211,7 +212,7 @@ class _$HomePageStateImpl implements _HomePageState {
       mimeType,
       geminiApiKey,
       generatedCode,
-      error);
+      errorMessage);
 
   @JsonKey(ignore: true)
   @override
@@ -227,7 +228,7 @@ abstract class _HomePageState implements HomePageState {
       final String? mimeType,
       final String? geminiApiKey,
       final String? generatedCode,
-      final String? error}) = _$HomePageStateImpl;
+      final String? errorMessage}) = _$HomePageStateImpl;
 
   @override
   GenerateStatus get generateStatus;
@@ -240,7 +241,7 @@ abstract class _HomePageState implements HomePageState {
   @override
   String? get generatedCode;
   @override
-  String? get error;
+  String? get errorMessage;
   @override
   @JsonKey(ignore: true)
   _$$HomePageStateImplCopyWith<_$HomePageStateImpl> get copyWith =>

@@ -8,6 +8,6 @@ class HomePageState with _$HomePageState {
     String? mimeType,
     String? geminiApiKey,
     String? generatedCode,
-    String? error,
+    String? errorMessage,
   }) = _HomePageState;
 }
