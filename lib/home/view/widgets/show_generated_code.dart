@@ -1,5 +1,6 @@
 import 'package:code_my_screen/home/cubit/home_page_cubit.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 class ShowGeneratedCode extends StatelessWidget {
@@ -7,14 +8,49 @@ class ShowGeneratedCode extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final size = MediaQuery.sizeOf(context);
     return Builder(builder: (context) {
       return BlocBuilder<HomePageCubit, HomePageState>(
         builder: (context, state) {
-          return SingleChildScrollView(
-            scrollDirection: Axis.vertical,
-            child: SelectableText(
-              state.generatedCode ?? 'No code to show',
-            ),
+          return Column(
+            mainAxisSize: MainAxisSize.max,
+            children: [
+              Expanded(
+                child: Padding(
+                  padding: EdgeInsets.symmetric(
+                    vertical: size.height * 0.05,
+                    horizontal: size.width * 0.3,
+                  ),
+                  child: SingleChildScrollView(
+                    scrollDirection: Axis.vertical,
+                    child: SelectableText(
+                      state.generatedCode!,
+                    ),
+                  ),
+                ),
+              ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.end,
+                children: [
+                  Padding(
+                    padding: const EdgeInsets.all(20.0),
+                    child: ElevatedButton.icon(
+                      icon: const Icon(Icons.copy),
+                      onPressed: () {
+                        Clipboard.setData(
+                            ClipboardData(text: state.generatedCode!));
+                        ScaffoldMessenger.of(context).showSnackBar(
+                          const SnackBar(
+                            content: Text('Code copied to clipboard'),
+                          ),
+                        );
+                      },
+                      label: const Text('Copy Code'),
+                    ),
+                  ),
+                ],
+              ),
+            ],
           );
         },
       );

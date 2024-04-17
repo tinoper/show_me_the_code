@@ -61,9 +61,13 @@ class HomePageCubit extends Cubit<HomePageState> {
 
     try {
       emit(
-        state.copyWith(generateStatus: GenerateStatus.generating),
+        state.copyWith(
+          generateStatus: GenerateStatus.generating,
+        ),
       );
+
       final response = await model.generateContent(content);
+
       emit(
         state.copyWith(
           generateStatus: GenerateStatus.generated,
@@ -77,6 +81,6 @@ class HomePageCubit extends Cubit<HomePageState> {
       ));
     }
   }
-  // Generated Code Success
+
   // Generate Code Failure
 }

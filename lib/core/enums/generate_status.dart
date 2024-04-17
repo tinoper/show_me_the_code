@@ -4,5 +4,6 @@ enum GenerateStatus {
   selectApiKey,
   generating,
   generated,
+  builded,
   error,
 }

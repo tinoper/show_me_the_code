@@ -23,8 +23,36 @@ Technical details:
 - Set debugShowCheckedModeBanner to false in MaterialApp
 - Use only official Flutter packages unless otherwise specified
 
-RETURN ONLY THE CODE FOR THE `main.dart` FILE wrapped in a Markdown code block (```dart {CODE} ```).
+
+The following code must be used to start the app:
+void main() {
+  runApp(const MyApp());
+}
+
+class MyApp extends StatelessWidget {
+  const MyApp({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      debugShowCheckedModeBanner: false,
+      title: 'Flutter Demo',
+      theme: ThemeData(
+        useMaterial3: true,
+        colorScheme: ColorScheme.fromSeed(
+          seedColor: const Color(0xFF6750A4),
+        ),
+      ),
+      home: const MyHomePage(),
+    );
+  }
+}
+RETURN ONLY THE CODE FOR THE MyHomePage()
+
 Don't include any explanations or comments.
 
-Remember: you love your designers and POs and want them to be happy. The more complete and impressive your app, the happier they will be. Let's think step by step. Good luck, you've got this!`''';
+Remember: you love your designers and POs and want them to be happy. The more complete and impressive your app, the happier they will be. Let's think step by step. Good luck, you've got this!''';
 }
+// RETURN ONLY THE CODE FOR THE `main.dart` but exclude MaterialApp , only the code inside the home widget
+// RETURN ONLY THE CODE FOR THE `main.dart` FILE wrapped in a Markdown code block (```dart {CODE} ```).
+// Remember: you love your designers and POs and want them to be happy. The more complete and impressive your app, the happier they will be. Let's think step by step. Good luck, you've got this!`''';
