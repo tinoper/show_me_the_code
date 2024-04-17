@@ -47,9 +47,16 @@ class HomePageCubit extends Cubit<HomePageState> {
   }
 
   Future<void> generateCode() async {
+    final GenerationConfig generationConfig = GenerationConfig(
+      maxOutputTokens: 4096,
+      temperature: 0.4,
+      topK: 32,
+    );
+
     final model = GenerativeModel(
       model: Constants.geminiModel,
       apiKey: state.geminiApiKey!,
+      generationConfig: generationConfig,
     );
 
     final content = [
@@ -59,27 +66,34 @@ class HomePageCubit extends Cubit<HomePageState> {
       ])
     ];
 
-    try {
-      emit(
-        state.copyWith(
-          generateStatus: GenerateStatus.generating,
-        ),
-      );
+    final tokenCount = await model.countTokens(content);
+    print('Token count: ${tokenCount.totalTokens}');
+    final streamResponse = model.generateContentStream(content);
 
-      final response = await model.generateContent(content);
+    emit(
+      state.copyWith(
+        generateStatus: GenerateStatus.generating,
+      ),
+    );
 
-      emit(
-        state.copyWith(
-          generateStatus: GenerateStatus.generated,
-          generatedCode: response.text,
-        ),
-      );
-    } catch (e) {
-      emit(state.copyWith(
-        generateStatus: GenerateStatus.error,
-        errorMessage: "Error Trying to generate code ${e.toString()}",
-      ));
-    }
+    streamResponse.listen(
+      (event) {
+        final String newCode = event.text ?? '';
+        emit(
+          state.copyWith(
+            generateStatus: GenerateStatus.generated,
+            generatedCode: (state.generatedCode ?? '') + newCode,
+          ),
+        );
+      },
+      onError: (error) {
+        emit(state.copyWith(
+          generateStatus: GenerateStatus.error,
+          errorMessage: "Error Trying to generate code ${error.toString()}",
+        ));
+      },
+      // onDone: () => print('onDone'),
+    );
   }
 
   // Generate Code Failure
