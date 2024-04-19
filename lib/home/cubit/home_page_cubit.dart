@@ -21,6 +21,7 @@ class HomePageCubit extends Cubit<HomePageState> {
         );
 
   final FilePicker _filePicker;
+  StreamSubscription<dynamic>? _generateCodeSubscription;
 
   Future<void> selectFilePressed() async {
     final result = await _filePicker.pickFiles(type: FileType.image);
@@ -81,15 +82,24 @@ class HomePageCubit extends Cubit<HomePageState> {
 
     final streamResponse = model.generateContentStream(content);
 
-    streamResponse.listen((event) {
-      final String newCode = event.text ?? '';
-      emit(
-        state.copyWith(
-          generatedCode: (state.generatedCode) + newCode,
-        ),
-      );
-    });
+    await _generateCodeSubscription?.cancel();
+    _generateCodeSubscription = streamResponse.listen(
+      (event) {
+        final String newCode = event.text ?? '';
+        emit(
+          state.copyWith(
+            generatedCode: (state.generatedCode) + newCode,
+          ),
+        );
+      },
+    );
   }
 
   // Generate Code Failure
+
+  @override
+  Future<void> close() {
+    _generateCodeSubscription?.cancel();
+    return super.close();
+  }
 }
