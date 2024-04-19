@@ -7,7 +7,7 @@ class HomePageState with _$HomePageState {
     Uint8List? file,
     String? mimeType,
     String? geminiApiKey,
-    String? generatedCode,
+    @Default('') String generatedCode,
     String? errorMessage,
   }) = _HomePageState;
 }

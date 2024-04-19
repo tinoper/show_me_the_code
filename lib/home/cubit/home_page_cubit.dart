@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:code_my_screen/core/constants.dart';
 import 'package:code_my_screen/core/enums/generate_status.dart';
 import 'package:file_picker/file_picker.dart';
@@ -47,6 +49,17 @@ class HomePageCubit extends Cubit<HomePageState> {
   }
 
   Future<void> generateCode() async {
+    emit(
+      state.copyWith(
+        generateStatus: GenerateStatus.generating,
+      ),
+    );
+    unawaited(getCodeFromApi());
+  }
+
+  Future<void> getCodeFromApi() async {
+    // Use Case
+    // Get Stream<String> with received code from the API
     final GenerationConfig generationConfig = GenerationConfig(
       maxOutputTokens: 4096,
       temperature: 0.4,
@@ -66,34 +79,16 @@ class HomePageCubit extends Cubit<HomePageState> {
       ])
     ];
 
-    final tokenCount = await model.countTokens(content);
-    print('Token count: ${tokenCount.totalTokens}');
     final streamResponse = model.generateContentStream(content);
 
-    emit(
-      state.copyWith(
-        generateStatus: GenerateStatus.generating,
-      ),
-    );
-
-    streamResponse.listen(
-      (event) {
-        final String newCode = event.text ?? '';
-        emit(
-          state.copyWith(
-            generateStatus: GenerateStatus.generated,
-            generatedCode: (state.generatedCode ?? '') + newCode,
-          ),
-        );
-      },
-      onError: (error) {
-        emit(state.copyWith(
-          generateStatus: GenerateStatus.error,
-          errorMessage: "Error Trying to generate code ${error.toString()}",
-        ));
-      },
-      // onDone: () => print('onDone'),
-    );
+    streamResponse.listen((event) {
+      final String newCode = event.text ?? '';
+      emit(
+        state.copyWith(
+          generatedCode: (state.generatedCode) + newCode,
+        ),
+      );
+    });
   }
 
   // Generate Code Failure

@@ -19,6 +19,8 @@ class HomePageView extends StatelessWidget {
         title: const Text(Constants.title),
       ),
       body: BlocBuilder<HomePageCubit, HomePageState>(
+        buildWhen: (final previous, final current) =>
+            previous.generateStatus != current.generateStatus,
         builder: (context, state) {
           switch (state.generateStatus) {
             case GenerateStatus.loading:
@@ -28,13 +30,7 @@ class HomePageView extends StatelessWidget {
             case GenerateStatus.selectApiKey:
               return const SelectApiKeyWidget();
             case GenerateStatus.generating:
-              return const Center(
-                child: Text('Generating'),
-              );
-            case GenerateStatus.generated:
               return const ShowGeneratedCode();
-            case GenerateStatus.builded:
-              return const ShowCodeBuilded();
             case GenerateStatus.error:
               return const Placeholder();
             default:
