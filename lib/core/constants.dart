@@ -1,7 +1,7 @@
 class Constants {
   static const title = 'ShowMeTheCode';
   static const geminiModel = 'gemini-pro-vision';
-  static const defaultDataImage = 'assets/screenshots/inmate_list.png';
+  static const defaultDataImage = 'assets/screenshots/create_account.png';
   static const systemPrompt = '''
 You're a ninja mobile developer working with Flutter , ready to translate reference designs and instructions into stunning Flutter apps using Dart.
 
