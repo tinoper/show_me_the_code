@@ -3,7 +3,6 @@ import 'package:code_my_screen/core/enums/generate_status.dart';
 import 'package:code_my_screen/home/cubit/home_page_cubit.dart';
 import 'package:code_my_screen/home/view/widgets/select_apikey.dart';
 import 'package:code_my_screen/home/view/widgets/select_screenshot.dart';
-import 'package:code_my_screen/home/view/widgets/show_code_builded.dart';
 import 'package:code_my_screen/home/view/widgets/show_generated_code.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';

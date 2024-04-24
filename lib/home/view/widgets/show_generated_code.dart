@@ -20,7 +20,7 @@ class _ShowGeneratedCodeState extends State<ShowGeneratedCode>
     super.initState();
     _controller = AnimationController(
       vsync: this,
-      duration: const Duration(milliseconds: 2500), // Adjust animation duration
+      duration: const Duration(milliseconds: 2500),
     );
     _opacityAnimation =
         Tween<double>(begin: 0.0, end: 1.0).animate(_controller);
@@ -43,7 +43,7 @@ class _ShowGeneratedCodeState extends State<ShowGeneratedCode>
         return Column(
           mainAxisSize: MainAxisSize.max,
           children: [
-            state.generatedCode.isEmpty
+            state.generatedCode == null
                 ? const Text('Generating')
                 : Expanded(
                     child: FadeTransition(
@@ -58,14 +58,14 @@ class _ShowGeneratedCodeState extends State<ShowGeneratedCode>
                           child: Container(
                             color: Colors.grey[200],
                             child: SelectableText(
-                              state.generatedCode,
+                              state.generatedCode ?? '',
                             ),
                           ),
                         ),
                       ),
                     ),
                   ),
-            if (state.generatedCode.isNotEmpty) ...[
+            if (state.generatedCode != null) ...[
               Row(
                 mainAxisAlignment: MainAxisAlignment.end,
                 children: [
@@ -75,7 +75,8 @@ class _ShowGeneratedCodeState extends State<ShowGeneratedCode>
                       icon: const Icon(Icons.copy),
                       onPressed: () {
                         Clipboard.setData(
-                            ClipboardData(text: state.generatedCode));
+                          ClipboardData(text: state.generatedCode ?? ''),
+                        );
                         ScaffoldMessenger.of(context).showSnackBar(
                           const SnackBar(
                             content: Text('Code copied to clipboard'),

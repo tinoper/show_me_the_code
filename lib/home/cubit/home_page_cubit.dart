@@ -83,14 +83,17 @@ class HomePageCubit extends Cubit<HomePageState> {
     final streamResponse = model.generateContentStream(content);
 
     await _generateCodeSubscription?.cancel();
+
     _generateCodeSubscription = streamResponse.listen(
       (event) {
-        final String newCode = event.text ?? '';
-        emit(
-          state.copyWith(
-            generatedCode: (state.generatedCode) + newCode,
-          ),
-        );
+        if (event.text != null) {
+          final String newCode = event.text!;
+          emit(
+            state.copyWith(
+              generatedCode: (state.generatedCode) + newCode,
+            ),
+          );
+        }
       },
     );
   }
