@@ -58,9 +58,8 @@ class HomePageCubit extends Cubit<HomePageState> {
     unawaited(getCodeFromApi());
   }
 
+  // Use Case
   Future<void> getCodeFromApi() async {
-    // Use Case
-    // Get Stream<String> with received code from the API
     final GenerationConfig generationConfig = GenerationConfig(
       maxOutputTokens: 4096,
       temperature: 0.4,
@@ -80,26 +79,28 @@ class HomePageCubit extends Cubit<HomePageState> {
       ])
     ];
 
-    final streamResponse = model.generateContentStream(content);
-
-    await _generateCodeSubscription?.cancel();
-
-    _generateCodeSubscription = streamResponse.listen(
-      (event) {
-        if (event.text != null) {
-          final String newCode = event.text!;
-          emit(
-            state.copyWith(
-              generatedCode: (state.generatedCode) + newCode,
-            ),
-          );
-        }
-      },
-    );
+    try {
+      final response = await model.generateContent(content);
+      if (response.text != null) {
+        emit(
+          state.copyWith(
+            generateStatus: GenerateStatus.generated,
+            generatedCode: response.text ?? '',
+          ),
+        );
+      }
+    } catch (e) {
+      emit(
+        state.copyWith(
+          generateStatus: GenerateStatus.error,
+          errorMessage: e.toString(),
+        ),
+      );
+      return;
+    }
   }
 
   // Generate Code Failure
-
   @override
   Future<void> close() {
     _generateCodeSubscription?.cancel();

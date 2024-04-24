@@ -3,5 +3,6 @@ enum GenerateStatus {
   selectScreenshot,
   selectApiKey,
   generating,
+  generated,
   error,
 }

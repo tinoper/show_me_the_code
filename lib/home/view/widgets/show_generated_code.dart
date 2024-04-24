@@ -43,28 +43,26 @@ class _ShowGeneratedCodeState extends State<ShowGeneratedCode>
         return Column(
           mainAxisSize: MainAxisSize.max,
           children: [
-            state.generatedCode == null
-                ? const Text('Generating')
-                : Expanded(
-                    child: FadeTransition(
-                      opacity: _opacityAnimation,
-                      child: Padding(
-                        padding: EdgeInsets.symmetric(
-                          vertical: size.height * 0.05,
-                          horizontal: size.width * 0.3,
-                        ),
-                        child: SingleChildScrollView(
-                          scrollDirection: Axis.vertical,
-                          child: Container(
-                            color: Colors.grey[200],
-                            child: SelectableText(
-                              state.generatedCode ?? '',
-                            ),
-                          ),
-                        ),
+            Expanded(
+              child: FadeTransition(
+                opacity: _opacityAnimation,
+                child: Padding(
+                  padding: EdgeInsets.symmetric(
+                    vertical: size.height * 0.05,
+                    horizontal: size.width * 0.3,
+                  ),
+                  child: SingleChildScrollView(
+                    scrollDirection: Axis.vertical,
+                    child: Container(
+                      color: Colors.grey[200],
+                      child: SelectableText(
+                        state.generatedCode,
                       ),
                     ),
                   ),
+                ),
+              ),
+            ),
             if (state.generatedCode != null) ...[
               Row(
                 mainAxisAlignment: MainAxisAlignment.end,
