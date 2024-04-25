@@ -1,16 +1,11 @@
-# code_my_screen
+# Show Me The Code
 
-A new Flutter project.
+Effortlessly turn screenshots into Flutter code. Revolutionize Flutter development with ease!
 
 ## Getting Started
 
-This project is a starting point for a Flutter application.
+Powered by Gemini API, 'Show Me The Code' simplifies the app development process like never before. Designed with ease of use in mind, our app empowers aspiring developers to bring their UI designs to life with just a screenshot. No more struggling with complex coding concepts – 'Show Me The Code' does the heavy lifting for you. Whether you're a novice or have some experience with Flutter, our intuitive interface guides you through the process effortlessly. Say goodbye to frustration and hello to rapid progress in your Flutter journey. Join us as we revolutionize app development for aspiring developers everywhere. With 'Show Me The Code' and Gemini API, the future of Flutter development is at your fingertips. Let's make coding accessible and fun for everyone!
 
-A few resources to get you started if this is your first Flutter project:
+## How it works
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
-
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+[WIP]
