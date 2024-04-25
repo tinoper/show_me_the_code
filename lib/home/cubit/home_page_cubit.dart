@@ -100,6 +100,26 @@ class HomePageCubit extends Cubit<HomePageState> {
     }
   }
 
+  void onBackButtonPressed() {
+    final currentStatus = state.generateStatus;
+    if (currentStatus.index <= GenerateStatus.selectScreenshot.index) {
+      return;
+    }
+
+    final updatedStatus = GenerateStatus.values[currentStatus.index - 1];
+    emit(state.copyWith(generateStatus: updatedStatus));
+  }
+
+  void onStartOverPressed() {
+    emit(
+      state.copyWith(
+        generateStatus: GenerateStatus.selectScreenshot,
+        generatedCode: '',
+        errorMessage: '',
+      ),
+    );
+  }
+
   // Generate Code Failure
   @override
   Future<void> close() {

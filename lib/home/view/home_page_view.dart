@@ -14,39 +14,51 @@ class HomePageView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        backgroundColor:
-            Theme.of(context).colorScheme.inversePrimary.withOpacity(0.2),
-        title: Text(
-          Constants.title,
-          style: TextStyle(
-            color: Colors.red.shade900,
+    final cubit = context.read<HomePageCubit>();
+    final ThemeData theme = Theme.of(context);
+
+    final widgetsMap = {
+      GenerateStatus.loading: const Center(child: CircularProgressIndicator()),
+      GenerateStatus.selectScreenshot: const SelectScreenshotWidget(),
+      GenerateStatus.selectApiKey: const SelectApiKeyWidget(),
+      GenerateStatus.generating: const GeneratingCode(),
+      GenerateStatus.generated: const ShowGeneratedCode(),
+      GenerateStatus.error: const ShowErrorMessage(),
+    };
+
+    return BlocBuilder<HomePageCubit, HomePageState>(
+      buildWhen: (final previous, final current) =>
+          previous.generateStatus != current.generateStatus,
+      builder: (context, state) {
+        final Widget? bodyWidget = widgetsMap[state.generateStatus];
+
+        Widget? leadingWidget;
+        if (state.generateStatus == GenerateStatus.selectApiKey) {
+          leadingWidget = IconButton(
+            onPressed: cubit.onBackButtonPressed,
+            icon: Icon(
+              Icons.arrow_back,
+              color: theme.primaryColor,
+            ),
+          );
+        }
+
+        return Scaffold(
+          appBar: AppBar(
+            leading: leadingWidget,
+            centerTitle: true,
+            backgroundColor:
+                Theme.of(context).colorScheme.inversePrimary.withOpacity(0.2),
+            title: Text(
+              Constants.title,
+              style: TextStyle(
+                color: theme.primaryColor,
+              ),
+            ),
           ),
-        ),
-      ),
-      body: BlocBuilder<HomePageCubit, HomePageState>(
-        buildWhen: (final previous, final current) =>
-            previous.generateStatus != current.generateStatus,
-        builder: (context, state) {
-          switch (state.generateStatus) {
-            case GenerateStatus.loading:
-              return const Center(child: CircularProgressIndicator());
-            case GenerateStatus.selectScreenshot:
-              return const SelectScreenshotWidget();
-            case GenerateStatus.selectApiKey:
-              return const SelectApiKeyWidget();
-            case GenerateStatus.generating:
-              return const GeneratingCode();
-            case GenerateStatus.generated:
-              return const ShowGeneratedCode();
-            case GenerateStatus.error:
-              return const ShowErrorMessage();
-            default:
-              return const Placeholder();
-          }
-        },
-      ),
+          body: bodyWidget ?? const Placeholder(),
+        );
+      },
     );
   }
 }

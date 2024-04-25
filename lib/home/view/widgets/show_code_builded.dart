@@ -9,8 +9,8 @@ class ShowCodeBuilded extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocBuilder<HomePageCubit, HomePageState>(
       builder: (context, state) {
-        return state.generatedCode != null
-            ? Text(state.generatedCode ?? '')
+        return state.generatedCode.isNotEmpty
+            ? Text(state.generatedCode)
             : const Text('No code generated yet');
       },
     );
