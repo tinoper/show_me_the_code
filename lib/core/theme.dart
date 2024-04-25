@@ -25,4 +25,8 @@ ThemeData appTheme() => ThemeData(
       progressIndicatorTheme: ProgressIndicatorThemeData(
         color: primaryColor,
       ),
+      snackBarTheme: SnackBarThemeData(
+        backgroundColor: primaryColor,
+        actionTextColor: Colors.white,
+      ),
     );
