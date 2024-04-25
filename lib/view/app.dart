@@ -1,4 +1,5 @@
 import 'package:code_my_screen/core/constants.dart';
+import 'package:code_my_screen/core/theme.dart';
 import 'package:code_my_screen/home/view/home_page.dart';
 import 'package:flutter/material.dart';
 
@@ -10,11 +11,14 @@ class App extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       title: Constants.title,
-      theme: ThemeData(
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepOrange),
-        useMaterial3: true,
-      ),
-      home: const HomePage(title: Constants.title),
+      theme: appTheme(),
+      // theme: ThemeData(
+      //   colorScheme: ColorScheme.fromSeed(
+      //     seedColor: Colors.red.shade900,
+      //   ),
+      //   useMaterial3: true,
+      // ),
+      home: const HomePage(),
     );
   }
 }

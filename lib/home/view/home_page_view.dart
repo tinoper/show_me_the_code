@@ -16,8 +16,14 @@ class HomePageView extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Theme.of(context).colorScheme.inversePrimary,
-        title: const Text(Constants.title),
+        backgroundColor:
+            Theme.of(context).colorScheme.inversePrimary.withOpacity(0.2),
+        title: Text(
+          Constants.title,
+          style: TextStyle(
+            color: Colors.red.shade900,
+          ),
+        ),
       ),
       body: BlocBuilder<HomePageCubit, HomePageState>(
         buildWhen: (final previous, final current) =>
