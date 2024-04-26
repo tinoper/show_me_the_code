@@ -1,12 +1,11 @@
 import 'dart:async';
 
-import 'package:code_my_screen/core/constants.dart';
 import 'package:code_my_screen/core/enums/generate_status.dart';
+import 'package:code_my_screen/services/geminiapi_repository/geminiapi_repository.dart';
 import 'package:file_picker/file_picker.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:google_generative_ai/google_generative_ai.dart';
 
 part 'home_page_cubit.freezed.dart';
 part 'home_page_state.dart';
@@ -14,6 +13,7 @@ part 'home_page_state.dart';
 class HomePageCubit extends Cubit<HomePageState> {
   HomePageCubit(
     this._filePicker,
+    this._geminiApiRepository,
   ) : super(
           const HomePageState(
             generateStatus: GenerateStatus.selectScreenshot,
@@ -21,7 +21,7 @@ class HomePageCubit extends Cubit<HomePageState> {
         );
 
   final FilePicker _filePicker;
-  StreamSubscription<dynamic>? _generateCodeSubscription;
+  final GeminiApiRepository _geminiApiRepository;
 
   Future<void> selectFilePressed() async {
     final result = await _filePicker.pickFiles(type: FileType.image);
@@ -58,29 +58,20 @@ class HomePageCubit extends Cubit<HomePageState> {
     unawaited(getCodeFromApi());
   }
 
-  // Use Case
+  // Main Use Case
   Future<void> getCodeFromApi() async {
-    final GenerationConfig generationConfig = GenerationConfig(
-      maxOutputTokens: 4096,
-      temperature: 0.4,
-      topK: 32,
-    );
-
-    final model = GenerativeModel(
-      model: Constants.geminiModel,
-      apiKey: state.geminiApiKey!,
-      generationConfig: generationConfig,
-    );
-
-    final content = [
-      Content.multi([
-        TextPart(Constants.systemPrompt),
-        DataPart(state.mimeType!, state.file!),
-      ])
-    ];
+    if (state.file == null ||
+        state.mimeType == null ||
+        state.geminiApiKey == null) {
+      return;
+    }
 
     try {
-      final response = await model.generateContent(content);
+      final response = await _geminiApiRepository.generateContent(
+        screenshotFile: state.file!,
+        mimeType: state.mimeType!,
+        apiKey: state.geminiApiKey!,
+      );
       if (response.text != null) {
         emit(
           state.copyWith(
@@ -118,12 +109,5 @@ class HomePageCubit extends Cubit<HomePageState> {
         errorMessage: '',
       ),
     );
-  }
-
-  // Generate Code Failure
-  @override
-  Future<void> close() {
-    _generateCodeSubscription?.cancel();
-    return super.close();
   }
 }
