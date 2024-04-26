@@ -1,3 +1,4 @@
+import 'package:code_my_screen/core/constants.dart';
 import 'package:code_my_screen/home/cubit/home_page_cubit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -57,67 +58,15 @@ class _ShowGeneratedCodeState extends State<ShowGeneratedCode>
                   child: SingleChildScrollView(
                     scrollDirection: Axis.vertical,
                     child: Container(
-                      color: Colors.grey[100],
-                      child: SelectableText(
-                        '''
-class HomePageView extends StatelessWidget {
-  const HomePageView({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    final cubit = context.read<HomePageCubit>();
-    final ThemeData theme = Theme.of(context);
-
-    final widgetsMap = {
-      GenerateStatus.loading: const Center(child: CircularProgressIndicator()),
-      GenerateStatus.selectScreenshot: const SelectScreenshotWidget(),
-      GenerateStatus.selectApiKey: const SelectApiKeyWidget(),
-      GenerateStatus.generating: const GeneratingCode(),
-      GenerateStatus.generated: const ShowGeneratedCode(),
-      GenerateStatus.error: const ShowErrorMessage(),
-    };
-
-    return BlocBuilder<HomePageCubit, HomePageState>(
-      buildWhen: (final previous, final current) =>
-          previous.generateStatus != current.generateStatus,
-      builder: (context, state) {
-        final Widget? bodyWidget = widgetsMap[state.generateStatus];
-
-        Widget? leadingWidget;
-        if (state.generateStatus == GenerateStatus.selectApiKey) {
-          leadingWidget = IconButton(
-            onPressed: cubit.onBackButtonPressed,
-            icon: Icon(
-              Icons.arrow_back,
-              color: theme.primaryColor,
-            ),
-          );
-        }
-
-        return Scaffold(
-          appBar: AppBar(
-            leading: leadingWidget,
-            centerTitle: true,
-            backgroundColor:
-                Theme.of(context).colorScheme.inversePrimary.withOpacity(0.2),
-            title: Text(
-              Constants.title,
-              style: TextStyle(
-                color: theme.primaryColor,
-              ),
-            ),
-          ),
-          body: bodyWidget ?? const Placeholder(),
-        );
-      },
-    );
-  }
-}
-''',
-                        // state.generatedCode,
-                        style: TextStyle(
-                          fontWeight: FontWeight.bold,
-                          color: theme.primaryColor,
+                      color: theme.primaryColor.withOpacity(0.1),
+                      child: Padding(
+                        padding: const EdgeInsets.only(left: 1.0),
+                        child: SelectableText(
+                          state.generatedCode,
+                          style: TextStyle(
+                            fontWeight: FontWeight.bold,
+                            color: theme.primaryColor,
+                          ),
                         ),
                       ),
                     ),
@@ -131,12 +80,12 @@ class HomePageView extends StatelessWidget {
                 Expanded(
                   child: Padding(
                     padding: EdgeInsets.symmetric(
-                      vertical: size.height * 0.05,
+                      vertical: size.height * 0.01,
                       horizontal: size.width > size.height
                           ? size.width * 0.35
                           : size.width * 0.05,
                     ),
-                    child: ElevatedButton.icon(
+                    child: FilledButton.icon(
                       icon: const Icon(Icons.copy),
                       onPressed: () {
                         Clipboard.setData(
@@ -148,9 +97,44 @@ class HomePageView extends StatelessWidget {
                           ),
                         );
                       },
-                      label: const Padding(
-                        padding: EdgeInsets.all(16.0),
-                        child: Text('Copy Code'),
+                      label: Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: Text(
+                          'Copy Code',
+                          style: TextStyle(
+                            fontSize: size.width * Constants.textSizeFactor,
+                          ),
+                        ),
+                      ),
+                    ),
+                  ),
+                ),
+              ],
+            ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Expanded(
+                  child: Padding(
+                    padding: EdgeInsets.symmetric(
+                      vertical: size.height * 0.01,
+                      horizontal: size.width > size.height
+                          ? size.width * 0.35
+                          : size.width * 0.05,
+                    ),
+                    child: FilledButton.icon(
+                      icon: const Icon(Icons.copy),
+                      onPressed: () {
+                        context.read<HomePageCubit>().onStartOverPressed();
+                      },
+                      label: Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: Text(
+                          'Start over',
+                          style: TextStyle(
+                            fontSize: size.width * Constants.textSizeFactor,
+                          ),
+                        ),
                       ),
                     ),
                   ),

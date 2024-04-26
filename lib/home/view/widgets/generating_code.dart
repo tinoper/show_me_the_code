@@ -1,3 +1,4 @@
+import 'package:code_my_screen/core/constants.dart';
 import 'package:flutter/material.dart';
 import 'package:stop_watch_timer/stop_watch_timer.dart';
 
@@ -31,7 +32,7 @@ class _GeneratingCodeState extends State<GeneratingCode> {
           Text(
             'Generating code',
             style: TextStyle(
-              fontSize: size.width * 0.03,
+              fontSize: size.width * Constants.textSizeFactor,
               color: theme.primaryColor,
               fontWeight: FontWeight.bold,
             ),
@@ -51,27 +52,23 @@ class _GeneratingCodeState extends State<GeneratingCode> {
                 children: <Widget>[
                   Container(
                     alignment: Alignment.center,
-                    width: size.width * 0.4,
+                    width: size.width * 0.5,
                     decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(size.width * 0.05),
                       color: theme.primaryColor,
                     ),
                     child: Padding(
-                      padding: const EdgeInsets.all(16),
+                      padding: const EdgeInsets.all(8),
                       child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                        mainAxisAlignment: MainAxisAlignment.center,
                         children: [
                           Text(
                             displayTime,
                             style: TextStyle(
-                              fontSize: size.width * 0.05,
+                              fontSize: size.width * Constants.textSizeFactor,
                               color: Colors.white,
                               fontWeight: FontWeight.bold,
                             ),
-                          ),
-                          CircularProgressIndicator(
-                            color: Colors.white,
-                            strokeWidth: size.width * 0.005,
                           ),
                         ],
                       ),

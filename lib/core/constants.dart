@@ -1,4 +1,5 @@
 class Constants {
+  static const textSizeFactor = 0.015;
   static const title = 'ShowMeTheCode';
   static const geminiModel = 'gemini-pro-vision';
   static const systemPrompt = '''

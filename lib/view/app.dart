@@ -12,12 +12,6 @@ class App extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       title: Constants.title,
       theme: appTheme(),
-      // theme: ThemeData(
-      //   colorScheme: ColorScheme.fromSeed(
-      //     seedColor: Colors.red.shade900,
-      //   ),
-      //   useMaterial3: true,
-      // ),
       home: const HomePage(),
     );
   }
