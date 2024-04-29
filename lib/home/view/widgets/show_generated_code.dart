@@ -123,7 +123,7 @@ class _ShowGeneratedCodeState extends State<ShowGeneratedCode>
                           : size.width * 0.05,
                     ),
                     child: FilledButton.icon(
-                      icon: const Icon(Icons.copy),
+                      icon: const Icon(Icons.refresh_sharp),
                       onPressed: () {
                         context.read<HomePageCubit>().onStartOverPressed();
                       },

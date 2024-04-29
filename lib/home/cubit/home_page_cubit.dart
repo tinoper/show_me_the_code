@@ -55,11 +55,31 @@ class HomePageCubit extends Cubit<HomePageState> {
         generateStatus: GenerateStatus.generating,
       ),
     );
-    unawaited(getCodeFromApi());
+    unawaited(_getCodeFromApi());
+  }
+
+  void onBackButtonPressed() {
+    final currentStatus = state.generateStatus;
+    if (currentStatus.index <= GenerateStatus.selectScreenshot.index) {
+      return;
+    }
+
+    final updatedStatus = GenerateStatus.values[currentStatus.index - 1];
+    emit(state.copyWith(generateStatus: updatedStatus));
+  }
+
+  void onStartOverPressed() {
+    emit(
+      state.copyWith(
+        generateStatus: GenerateStatus.selectScreenshot,
+        generatedCode: '',
+        errorMessage: '',
+      ),
+    );
   }
 
   // Main Use Case
-  Future<void> getCodeFromApi() async {
+  Future<void> _getCodeFromApi() async {
     if (state.file == null ||
         state.mimeType == null ||
         state.geminiApiKey == null) {
@@ -89,25 +109,5 @@ class HomePageCubit extends Cubit<HomePageState> {
       );
       return;
     }
-  }
-
-  void onBackButtonPressed() {
-    final currentStatus = state.generateStatus;
-    if (currentStatus.index <= GenerateStatus.selectScreenshot.index) {
-      return;
-    }
-
-    final updatedStatus = GenerateStatus.values[currentStatus.index - 1];
-    emit(state.copyWith(generateStatus: updatedStatus));
-  }
-
-  void onStartOverPressed() {
-    emit(
-      state.copyWith(
-        generateStatus: GenerateStatus.selectScreenshot,
-        generatedCode: '',
-        errorMessage: '',
-      ),
-    );
   }
 }
