@@ -10,33 +10,52 @@ class SelectScreenshotWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     final cubit = context.read<HomePageCubit>();
     final size = MediaQuery.sizeOf(context);
-    return Center(
-      child: Column(
-        mainAxisSize: MainAxisSize.min,
-        children: [
-          SizedBox(
-            width: size.width * 0.5,
-            child: FilledButton.icon(
-              onPressed: cubit.selectFilePressed,
-              icon: Icon(
-                Icons.file_upload,
-                size: size.width * Constants.textSizeFactor,
-              ),
-              label: Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: Text(
-                  'Select screenshot',
-                  style: TextStyle(
-                    fontSize: size.width * Constants.textSizeFactor,
-                    color: Colors.white,
-                    fontWeight: FontWeight.bold,
-                  ),
+    final theme = Theme.of(context);
+    return Column(
+      children: [
+        Container(
+          width: size.width,
+          height: size.height * 0.4,
+          color: theme.colorScheme.inversePrimary.withOpacity(0.2),
+          child: FittedBox(
+            fit: BoxFit.contain,
+            child: Padding(
+              padding: const EdgeInsets.all(16.0),
+              child: ClipOval(
+                child: Image.asset(
+                  'assets/logo/showmethecode-icon.png',
                 ),
               ),
             ),
           ),
-        ],
-      ),
+        ),
+        SizedBox(
+          height: size.height * 0.5,
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              FilledButton.icon(
+                onPressed: cubit.selectFilePressed,
+                icon: Icon(
+                  Icons.file_upload,
+                  size: size.width * Constants.textSizeFactor,
+                ),
+                label: Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: Text(
+                    'Select screenshot',
+                    style: TextStyle(
+                      fontSize: size.width * Constants.textSizeFactor,
+                      color: Colors.white,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                ),
+              ),
+            ],
+          ),
+        ),
+      ],
     );
   }
 }

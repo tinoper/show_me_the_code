@@ -16,7 +16,7 @@ class HomePageCubit extends Cubit<HomePageState> {
     this._geminiApiRepository,
   ) : super(
           const HomePageState(
-            generateStatus: GenerateStatus.error,
+            generateStatus: GenerateStatus.selectScreenshot,
           ),
         );
 

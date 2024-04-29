@@ -47,7 +47,7 @@ class HomePageView extends StatelessWidget {
           appBar: AppBar(
             leading: leadingWidget,
             centerTitle: true,
-            backgroundColor: theme.colorScheme.inversePrimary.withOpacity(0.2),
+            backgroundColor: theme.colorScheme.inversePrimary.withOpacity(0.4),
             title: Text(
               Constants.title,
               style: TextStyle(
