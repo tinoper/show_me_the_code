@@ -96,7 +96,7 @@ class HomePageCubit extends Cubit<HomePageState> {
         (l) => emit(
               state.copyWith(
                 generateStatus: GenerateStatus.error,
-                errorMessage: l.toString(),
+                errorMessage: l.message,
               ),
             ), (response) {
       emit(
