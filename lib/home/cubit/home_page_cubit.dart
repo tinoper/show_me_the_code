@@ -86,28 +86,25 @@ class HomePageCubit extends Cubit<HomePageState> {
       return;
     }
 
-    try {
-      final response = await _geminiApiRepository.generateContent(
-        screenshotFile: state.file!,
-        mimeType: state.mimeType!,
-        apiKey: state.geminiApiKey!,
-      );
-      if (response.text != null) {
-        emit(
-          state.copyWith(
-            generateStatus: GenerateStatus.generated,
-            generatedCode: response.text ?? '',
-          ),
-        );
-      }
-    } catch (e) {
+    final responseEither = await _geminiApiRepository.generateContent(
+      screenshotFile: state.file!,
+      mimeType: state.mimeType!,
+      apiKey: state.geminiApiKey!,
+    );
+
+    responseEither.fold(
+        (l) => emit(
+              state.copyWith(
+                generateStatus: GenerateStatus.error,
+                errorMessage: l.toString(),
+              ),
+            ), (response) {
       emit(
         state.copyWith(
-          generateStatus: GenerateStatus.error,
-          errorMessage: e.toString(),
+          generateStatus: GenerateStatus.generated,
+          generatedCode: response,
         ),
       );
-      return;
-    }
+    });
   }
 }

@@ -30,7 +30,7 @@ class ShowErrorMessage extends StatelessWidget {
                   SizedBox(
                     width: size.width * 0.6,
                     child: Text(
-                      'Error Message:  ${state.errorMessage} asdasdjk asjd as dnjkasd asjndj asjdnjasd ajsdnasjkd jkasnd',
+                      'Error Message:  ${state.errorMessage.toString()}',
                       maxLines: 3,
                       overflow: TextOverflow.ellipsis,
                       style: TextStyle(

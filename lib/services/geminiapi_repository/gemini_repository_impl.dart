@@ -1,43 +1,27 @@
 import 'dart:typed_data';
 
-import 'package:code_my_screen/core/constants.dart';
+import 'package:code_my_screen/services/geminiapi_repository/geminiapi_failure.dart';
 import 'package:code_my_screen/services/geminiapi_repository/geminiapi_repository.dart';
-import 'package:google_generative_ai/google_generative_ai.dart';
-import 'package:logging/logging.dart';
+import 'package:code_my_screen/services/geminiapi_repository/geminiapi_service.dart';
+import 'package:dartz/dartz.dart';
 
 class GeminiApiRepositoryImpl implements GeminiApiRepository {
+  GeminiApiService geminiApiService = GeminiApiService();
+
   @override
-  Future<GenerateContentResponse> generateContent({
+  Future<Either<GenerateContentFailure, String>> generateContent({
     required Uint8List screenshotFile,
     required String mimeType,
     required String apiKey,
   }) async {
-    final GenerationConfig generationConfig = GenerationConfig(
-      maxOutputTokens: 4096,
-      temperature: 0.4,
-      topK: 32,
-    );
-
-    final model = GenerativeModel(
-      model: Constants.geminiModel,
+    final either = await geminiApiService.generateContent(
+      screenshotFile: screenshotFile,
+      mimeType: mimeType,
       apiKey: apiKey,
-      generationConfig: generationConfig,
     );
 
-    final content = [
-      Content.multi([
-        TextPart(Constants.systemPrompt),
-        DataPart(mimeType, screenshotFile),
-      ])
-    ];
-    GenerateContentResponse response;
-    try {
-      response = await model.generateContent(content);
-    } catch (e) {
-      Logger.root.severe('GeminiAPI generate content error');
-      throw Exception(e);
-    }
-
-    return response;
+    return either.fold((l) => left(l), (r) {
+      return right(r);
+    });
   }
 }
